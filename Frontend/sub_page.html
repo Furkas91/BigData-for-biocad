@@ -20,22 +20,24 @@
 </script>
 <nav class="navbar navbar-light flex-md-shrink-0 bg-light form-inline">
     <h1>BIOCAD</h1>
+   <a href="sub_page.html"></a>
     <h5>Главная страница</h5>
 </nav>
 <div id="input-container"></div>
 <div id="window-container">
-    <div  class="left-container" id="table-container">
-
+    <div  class="left-container">
+        <div id="limit-input"></div>
     </div>
-    <div class="right-container">
-        <a href="sub_page.html" >График</a>
+    <div class="right-container sub-right">
+        <div id="graphic-container"></div>
+        <div id="log-container"></div>
     </div>
 </div>
 <!-- Примечание: для деплоя на продакшен замените окончание «development.js» на «production.min.js». -->
 <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
 <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
 <!-- импорт react файлов(скриптов)-->
-<script src="table_script.js" type="text/babel"></script>
-<!--<script src="limit_input.js" type="text/babel"></script>-->
+
+<script src="limit_input.js" type="text/babel"></script>
 </body>
 </html>

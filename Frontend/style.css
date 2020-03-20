@@ -1,0 +1,29 @@
+body{
+    padding-left:5px;
+    padding-right:5px;
+}
+#window-container{
+    display:flex;
+    height:600px;
+    background: cornsilk;
+}
+.left-container{
+    background: brown;
+    width:20%;
+}
+.right-container{
+    background: chartreuse;
+    width:80%;
+}
+.sub-right{
+    display:flex;
+    flex-direction: column;
+}
+#graphic-container{
+    background: blue;
+    height:60%;
+}
+#log-container{
+    background: blueviolet;
+   height:30%;
+}
