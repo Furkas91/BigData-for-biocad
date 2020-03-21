@@ -22,8 +22,8 @@ class TableValue extends React.Component {
                 {/*<div>{buttons.map(item => {
                     (<button className="btn btnDefault">item</button>)
                 })}*/}
-                <table width="100%" border="2">
-                    <tr>
+                <table className="table" >
+                    <tr className="thead-dark">
                         <th> #</th>
                         <th>Type </th>
                         <th>Value</th>
@@ -35,6 +35,6 @@ class TableValue extends React.Component {
     }
 }
 
-const values = [["minecraft", 3],["Андрей", 2]];
+const values = [["minecraft", 3],["Андрей", 2],["Андрей", 2],["Андрей", 2],["Андрей", 2],["Андрей", 2],["Андрей", 2],["Андрей", 2],["Андрей", 2],["Андрей", 2]];
 
 ReactDOM.render((<TableValue values={values}/>), document.getElementById("table-container"));
