@@ -1,6 +1,8 @@
 from django.db import models
 
 class Measure(models.Model):
+    class Meta:
+        app_label = 'api'
     Time = models.DateTimeField(verbose_name='Time', auto_now_add=True, db_index=True)
     Pressure = models.FloatField(verbose_name='Pressure')
     Humidity = models.FloatField(verbose_name='Humidity')
