@@ -9,28 +9,35 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.25.0/babel.min.js"></script>
 </head>
 <body>
-
 <nav class="navbar navbar-light flex-md-shrink-0 bg-light form-inline">
     <a class="navbar-brand" href="#">
         <img src="resources/logo2.png" width="200" height="60" alt="">
+
     </a>
-    <h5>Информация о датчике</h5>
+
+    <h5>Главная страница</h5>
 </nav>
 <div id="input-container"></div>
 <div id="window-container">
-    <div  class="left-container">
-        <div id="limit-input"></div>
+    <div  class="left-container" id="table-container">
+
     </div>
-    <div class="right-container sub-right">
-        <div id="graphic-container"></div>
-        <div id="log-container"></div>
+    <div class="right-container">
+        <a href="sub_page.html" >График</a>
     </div>
 </div>
 <!-- Примечание: для деплоя на продакшен замените окончание «development.js» на «production.min.js». -->
 <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
 <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+<script src="https://cdn.jsdelivr.net/lodash/4.10.0/lodash.js"></script>
 <!-- импорт react файлов(скриптов)-->
+<script src="https://unpkg.com/react/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/prop-types/prop-types.min.js"></script>
+<script src="https://unpkg.com/recharts/umd/Recharts.min.js"></script>
 
-<script src="limit_input.js" type="text/babel"></script>
+<script src="table_script.js" type="text/babel"></script>
+
+<!--<script src="limit_input.js" type="text/babel"></script>-->
 </body>
 </html>
