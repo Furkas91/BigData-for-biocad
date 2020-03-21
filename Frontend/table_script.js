@@ -10,7 +10,7 @@ class Table extends React.Component {
                 <table className="table"  >
                     <thead>
                     <tr className="thead-dark">
-                        <th onClick={this.props.onSort.bind(null, 'id')}> # {this.props.sortField === 'id' ? <img width="20" height="20" src={this.props.imgPath}/>: null}</th>
+                        <th onClick={this.props.onSort.bind(null, 'id')}> # {this.props.sortField === 'id' ? <img width="20" height="20" alt="" src={this.props.imgPath}/>: null }</th>
                         <th onClick={this.props.onSort.bind(null,'type')}>Type {this.props.sortField === 'type' ?  <img width="20" height="20" src={this.props.imgPath}/>: null}</th>
                         <th onClick={this.props.onSort.bind(null, 'value')}>Value {this.props.sortField === 'value' ?<img width="20" height="20" src={this.props.imgPath}/>: null}</th>
                     </tr>
@@ -66,7 +66,7 @@ class App extends React.Component {
             sortField: 'id',
             row: null,
             currentPage: 0,
-            imgPath:"arrow-down-outline.svg"
+            imgPath:""
         }
         this.onRowSelect = row => (
             this.setState({row})
@@ -98,7 +98,7 @@ class App extends React.Component {
 
             const cloneData = this.state.data.concat();
             const sortType = this.state.sort === 'asc' ? 'desc' : 'asc';
-            const imgP = sortType=== 'asc'? "arrow-down-outline.svg":"arrow-up-outline.svg";
+            const imgP = sortType=== 'asc'? "resources/arrow-down-outline.svg":"resources/arrow-up-outline.svg";
             const orderedData = _.orderBy(cloneData, sortField, sortType);
 
             this.setState({
