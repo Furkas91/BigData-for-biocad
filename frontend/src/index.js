@@ -97,3 +97,132 @@ class BoxGraphik extends React.Component{
 }
 
 ReactDOM.render((<BoxGraphik/>), document.getElementById("graphic-container"));
+
+let url = "http://127.0.0.1:8000/api/v1/all/";
+
+
+/*
+class ClientServer extends React.Component{
+    /*
+    constructor(props) {
+        super(props);
+        this.state= {
+            data: [],
+            counter: 0,
+            isFetching: false
+        };
+        this.handleChange = this.handleChange();
+        this.sendRequest = async (url) => {
+            let response = await fetch(url);
+            let json;
+            if (response.ok) { // если HTTP-статус в диапазоне 200-299
+                // получаем тело ответа (см. про этот метод ниже)
+                json = await response.json();
+                alert("Success");
+            } else {
+                alert("Ошибка HTTP: " + response.status);
+                json = "";
+            }
+            this.setState((state)=> {counter: state.counter + 1});
+            return json;
+        }
+        this.fetchQuotes = () => {
+            this.setState(state=>{counter: state.counter+1; isFetching: true});
+            fetch(QUOTE_SERVICE_URL)
+                .then(response => response.json())
+                .then(result => this.setState({quotes: result,
+                    isFetching: false}))
+                .catch(e => console.log(e));
+        }
+    }
+
+    componentDidMount() {
+        this.fetchQuotes()
+        this.timer = setInterval(() => this.fetchQuotes(), 3000);
+
+    }
+    componentWillUnmount() {
+        this.timer = null;
+    }
+    render(){
+
+        return
+    }
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            todos: []
+        };
+    }
+
+    componentDidMount() {
+        fetch(`some api url`).then(res => {
+            this.setState({ todos: res.todos });
+        });
+    }
+
+    return() {
+        return (<div value ={this.state.todos}></div>)
+    }
+}
+let sendRequest =  (counter) => {
+    let url = "http://127.0.0.1:8000/api/v1/all/";
+    let response =  fetch(url);
+    let json;
+    if (response.ok) { // если HTTP-статус в диапазоне 200-299
+        // получаем тело ответа (см. про этот метод ниже)
+        json =  response.json();
+        alert("Success");
+    } else {
+        alert("Ошибка HTTP: " + response.status);
+        json = "";
+    }
+    counter++;
+    console.log(counter);
+    return json;
+}
+let cont
+let timer = setInterval(sendRequest(cont), 3000)
+class SimpleField extends React.Component{
+    constructor(props) {
+        super(props);
+    }
+    return() {
+        return (<div>{this.props.value} </div>)
+    }
+}*/
+//ReactDOM.render((<SimpleField value={cont}/>), document.getElementById("log-container"));
+
+
+class MyComponent extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            posts: []
+        };
+    }
+
+    componentDidMount() {
+
+    }
+
+    render() {
+        return(<div>fsdf</div>)
+    }
+
+}
+ReactDOM.render((<MyComponent/>), document.getElementById("log-container"));
+
+
+let response =  fetch("http://127.0.0.1:8000/api/v1/all/");
+let json="2";
+if (response.ok) { // если HTTP-статус в диапазоне 200-299
+    // получаем тело ответа (см. про этот метод ниже)
+    json = response.json();
+    alert("Success");
+} else {
+    alert("Ошибка HTTP: " + response.status);
+}
+console.log(json);
