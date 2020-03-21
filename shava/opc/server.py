@@ -1,11 +1,12 @@
-from opcua import Server
-import random
 import datetime
+import random
 import time
+
+from opcua import Server
 
 server = Server()
 
-url = "opc.tcp://192.168.0.103:4840"
+url = "opc.tcp://192.168.0.104:4840"
 server.set_endpoint(url)
 
 name = "OPCUA_SIMULATION_SERVER"
