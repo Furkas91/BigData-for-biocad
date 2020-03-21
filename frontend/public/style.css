@@ -20,7 +20,7 @@ body{
     flex-direction: column;
 }
 #graphic-container{
-    background: blue;
+    background: antiquewhite;
     height:60%;
 }
 #log-container{

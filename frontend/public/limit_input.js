@@ -26,7 +26,7 @@ class LimitInput extends  React.Component{
         //const scale = this.props.scale;
         return (
             <fieldset>
-                <legend>Введите предел:</legend>
+                <legend>Введите предел</legend>
                 <input value={value} onChange={this.handleChange} />
                 <button className="" onClick={this.handleClick}>Применить</button>
                 <p>{this.state.info}</p>
