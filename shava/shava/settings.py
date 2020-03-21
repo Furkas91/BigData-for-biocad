@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'django-clickhouseapi'
     'api',
 ]
 
@@ -91,14 +90,6 @@ DATABASES = {
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
-}
-
-CLICKHOUSE_DATABASES = {
-    'django': {
-        'db_name': 'test',
-        'username': 'django',
-        'password': ''
-    },
 }
 
 

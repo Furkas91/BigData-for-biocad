@@ -17,7 +17,6 @@ iso8601==0.1.12
 kombu==4.6.8
 lxml==4.5.0
 opcua==0.98.9
-pkg-resources==0.0.0
 psycopg2-binary==2.8.4
 pycparser==2.20
 python-dateutil==2.8.1
