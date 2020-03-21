@@ -1,6 +1,8 @@
-import django
-from django.conf import settings
+from django.apps import apps
 
+
+from django.conf import settings
+import django
 settings.configure(DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -15,6 +17,9 @@ django.setup()
 #apps.get_app_config('admin').verbose_name
 from opcua import Client
 import time
+import psycopg2
+import psycopg2.extras
+import os
 
 
 def client():
@@ -22,8 +27,13 @@ def client():
 
     from api.models import Measure
 
+    #################################################################
 
-    url = "opc.tcp://192.168.0.104:4840"
+    #################################################################
+
+
+
+    url = "opc.tcp://192.168.0.103:4840"
     client = Client(url)
 
     client.connect()

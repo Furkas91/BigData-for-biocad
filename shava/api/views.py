@@ -16,7 +16,7 @@ class RealTimeMeasureView(generics.RetrieveUpdateDestroyAPIView):
 
 
     def retrieve(self, request, *args, **kwargs):
-        object = Measure.objects.latest('id')
+        object = Measure.objects.latest('Time')
         serializer = MeasureListSerializer(object)
         return Response(serializer.data)
 
