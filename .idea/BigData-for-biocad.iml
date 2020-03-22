@@ -6,5 +6,13 @@
     </content>
     <orderEntry type="jdk" jdkName="Python 3.6 (BigData-for-biocad)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="bootstrap" level="application" />
+    <orderEntry type="library" name="jquery-3.4.1.slim" level="application" />
+    <orderEntry type="library" name="lodash" level="application" />
+    <orderEntry type="library" name="popper" level="application" />
+    <orderEntry type="library" name="prop-types" level="application" />
+    <orderEntry type="library" name="react-dom.production" level="application" />
+    <orderEntry type="library" name="react.production" level="application" />
+    <orderEntry type="library" name="Recharts" level="application" />
   </component>
 </module>

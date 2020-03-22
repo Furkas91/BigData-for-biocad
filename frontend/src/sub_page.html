@@ -3,7 +3,7 @@
     <meta charset="UTF-8" />
     <title>BigData-for-Biocard</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <link rel="stylesheet" type="text/css" href="../public/style.css"/>
     <!-- Подключение BAbel для JSX -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.25.0/babel.min.js"></script>
 </head>
@@ -11,10 +11,11 @@
 
 <nav class="navbar navbar-light flex-md-shrink-0 bg-light form-inline">
     <a class="navbar-brand" href="#">
-        <img src="resources/logo2.png" width="200" height="60" alt="">
+        <img src="../public/logo2.png" width="200" height="60" alt="">
     </a>
     <h5>Информация о датчике</h5>
 </nav>
+<div id="root"></div>
 <div id="input-container"></div>
 <div id="window-container">
     <div  class="left-container">
@@ -39,6 +40,6 @@
 
 <script src="limit_input.js" type="text/babel"></script>
 <script src="graphik_script.js" type="text/babel"></script>
-<script src="../src/index.js"type="text/babel"></script>
+<script src="index.js" type="text/babel"></script>
 </body>
 </html>

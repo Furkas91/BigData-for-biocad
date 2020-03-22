@@ -27,25 +27,16 @@
 
     <nav class="navbar navbar-light flex-md-shrink-0 bg-light form-inline">
       <a class="navbar-brand" href="#">
-        <img src="resources/logo2.png" width="200" height="60" alt="">
+        <img src="./logo2.png" width="200" height="60" alt="">
 
       </a>
 
       <h5>Главная страница</h5>
     </nav>
+    <div id="root"></div>
+    <div id="ro"></div>
     <div id="input-container"></div>
-    <div id="window-container">
-      <div  class="left-container" id="table-container">
 
-      </div>
-      <div class="right-container">
-        <a href="sub_page.html" >График</a>
-        <div class="right-container sub-right">
-          <div id="graphic-container"></div>
-          <div id="log-container"></div>
-        </div>
-      </div>
-    </div>
     <!-- Примечание: для деплоя на продакшен замените окончание «development.js» на «production.min.js». -->
     <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
@@ -56,8 +47,8 @@
     <script src="https://unpkg.com/prop-types/prop-types.min.js"></script>
     <script src="https://unpkg.com/recharts/umd/Recharts.min.js"></script>
 
-    <script src="table_script.js" type="text/babel"></script>
-    <script src="graphik_script.js" type="text/babel"></script>
+    <script src="../src/table_script.js" type="text/babel"></script>
+    <script src="../src/graphik_script.js" type="text/babel"></script>
     <script src="" type="text/babel"></script>
 
   </body>
