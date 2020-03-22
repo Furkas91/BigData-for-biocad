@@ -1,4 +1,7 @@
-
+import React from "react";
+import _ from 'lodash';
+import imgdown from "./resources/arrow-down-outline.svg"
+import imgup from "./resources/arrow-up-outline.svg"
 class Table extends React.Component {
     constructor(props) {
         super(props);
@@ -54,7 +57,7 @@ class TableSearch extends React.Component {
 
 
 
-class App extends React.Component {
+export default class TableApp extends React.Component {
     constructor(props) {
         super(props);
         this.state ={
@@ -98,7 +101,7 @@ class App extends React.Component {
 
             const cloneData = this.state.data.concat();
             const sortType = this.state.sort === 'asc' ? 'desc' : 'asc';
-            const imgP = sortType=== 'asc'? "resources/arrow-down-outline.svg":"resources/arrow-up-outline.svg";
+            const imgP = sortType=== 'asc'? imgdown:imgup;
             const orderedData = _.orderBy(cloneData, sortField, sortType);
 
             this.setState({
@@ -121,7 +124,6 @@ class App extends React.Component {
                     onRowSelect={this.onRowSelect}
                     imgPath={this.state.imgPath}
                 />
-
             </div>
         );
     }
@@ -130,4 +132,4 @@ class App extends React.Component {
 
 let values = [[1,"Андрей", 2],[2,"Водичка", 9],[3,"Гречка", 2],[4,"Соль", 7],[5,"Паста", 1],[6,"Андрей", 10],[7,"minecraft", 3]];
 //values.sort(sortField);
-ReactDOM.render((<App/>), document.getElementById("table-container"));
+//ReactDOM.render((<App/>), document.getElementById("table-container"));

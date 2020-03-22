@@ -1,9 +1,7 @@
 
-//import ReactDOM from 'react-dom';
-//import './index.css';
+import React from "react";
 
-
-class LimitInput extends  React.Component{
+export default class LimitInput extends  React.Component{
     constructor(props) {
         super(props);
         this.state= { info : ""};
@@ -59,4 +57,4 @@ class Calculator extends React.Component {
         );
     }
 }
-ReactDOM.render((<Calculator/>), document.getElementById("limit-input"));
+//ReactDOM.render((<Calculator/>), document.getElementById("limit-input"));
