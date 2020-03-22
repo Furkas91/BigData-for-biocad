@@ -29,3 +29,9 @@ class LoggerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Log
         fields = "__all__"
+
+
+class TLoggerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Log
+        fields = ['Error']

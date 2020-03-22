@@ -3,7 +3,7 @@ from rest_framework import generics
 from rest_framework.response import Response
 
 from api.models import Measure, Ustavki, Log
-from api.serializers import MeasureListSerializer, UstavkaDefaultSerializer, LoggerSerializer
+from api.serializers import MeasureListSerializer, UstavkaDefaultSerializer, LoggerSerializer, TLoggerSerializer
 
 
 class ListMeasureView(generics.ListAPIView):
@@ -37,5 +37,11 @@ class RetrieveUstavkaView(generics.RetrieveAPIView):
 class ListLogsView(generics.ListAPIView):
     serializer_class = LoggerSerializer
     queryset = Log.objects.all()
+
+
+class ListTLogsView(generics.ListAPIView):
+    serializer_class = TLoggerSerializer
+    queryset = Log.objects.all()
+
 
 #class CreateMeasureView()
