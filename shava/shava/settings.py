@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'opc',
     # 'api.models.Measure',
 ]
+
+
 #
 # import django
 # django.setup()
@@ -89,7 +91,7 @@ WSGI_APPLICATION = 'shava.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
+        'NAME': 'biocad',
         'USER': 'postgres',
         'PASSWORD': 'qwerty',
         'HOST': '127.0.0.1',

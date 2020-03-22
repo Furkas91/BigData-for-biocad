@@ -6,7 +6,7 @@ import django
 settings.configure(DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
+        'NAME': 'biocad',
         'USER': 'postgres',
         'PASSWORD': 'qwerty',
         'HOST': '127.0.0.1',
@@ -33,7 +33,7 @@ def client():
 
 
 
-    url = "opc.tcp://172.18.8.26:4840"
+    url = "opc.tcp://192.168.0.103:4840"
     client = Client(url)
 
     client.connect()
