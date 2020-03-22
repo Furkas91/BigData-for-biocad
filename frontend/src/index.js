@@ -56,7 +56,7 @@ class Users extends React.Component {
             isModeSelected: false,
             isLoading: false,
             limitValue:'',
-            logger:"",
+            logger:[],
             limstate:{}
         }
         this.onRowSelect = row => (
@@ -93,13 +93,6 @@ class Users extends React.Component {
                     console.log(k);
                 axios.post("http://127.0.0.1:8000/api/v1/updateust/", k).then(res=>{alert("Success")});
                 });
-
-
-
-
-
-            //console.log(k);
-
         }
     }
 
@@ -114,9 +107,9 @@ class Users extends React.Component {
                     for(let x in array)
                         massive[x].push(array[x]);
                     return{data: massive, currentData:res.data}});})}, 3000)
-        this.timerLog = setInterval(()=>{axios.get("http://127.0.0.1:8000/api/v1/logs/")
+        this.timerLog = setInterval(()=>{axios.get("http://127.0.0.1:8000/api/v1/tlogs/")
             .then(res => {
-                this.setState({logger:res.data}) })}, 1000)
+                this.setState({logger:res.data}) })}, 5000)
     }
     componentWillUnmount() {
         this.timerData = null;
@@ -174,39 +167,44 @@ class Users extends React.Component {
                     </div>
                 </div>
                 <div className="right-container">
-                    <a href="../src/sub_page.html">График</a>
+                    <h4 align="center">График</h4>
                     <div className="right-container sub-right">
                         <div id="graphic-container">
                             <Graphic data ={this.state.data[this.state.type]}/>
-                            <div className="form-row" >
-
+                            <div  id ="inputPanel" >
+                                <div width ="20%">
                                     <SwitchButton handleChangeType={this.handleChangeType} type={this.state.type}/>
-
+                                </div>
+                                    <div  width ="60%">
                                     <LimitInput value={this.state.limitValue} onLimitChange={this.handleLimitChange} onLimitClick ={this.handleLimitClick}/>
-
+                                    </div>
                             </div>
 
                         </div>
-                        <div id="log-container">
-                            <Logger value = {this.state.logger}/>
-                        </div>
+
 
                     </div>
                 </div>
+
             </div>
-            <img src={"/resources/arrow-down-outline.svg"}/>
+            <h4 align="center">Логирование</h4>
+            <div id="log-container">
+                <Logger value={this.state.logger}/>
+            </div>
+
         </div>)
     }
 }
 
-
+//value = {this.state.logger}
 class Logger extends React.Component{
     constructor(props) {
         super(props);
     }
 
     render(){
-        return(<div><p>{this.props.value}</p></div>);
+        let partners = this.props.value.map((item) => <p>{item.Error}</p>)
+        return(<div>{partners}</div>);
     }
 }
 ReactDOM.render(<Users/>, document.getElementById("root"));
