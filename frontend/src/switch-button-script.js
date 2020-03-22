@@ -12,7 +12,7 @@ export default class SwitchButton extends  React.Component{
     }
 
     render(){
-        return (<div className="form-group col-md-4">
+        return (<div className="form-group ">
 
             <select className="form-control" name="city" onChange={this.handleInputChange}>
                 <option selected value="Pressure" >Pressure</option>

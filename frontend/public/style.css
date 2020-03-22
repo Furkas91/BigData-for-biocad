@@ -1,18 +1,22 @@
 body{
-    padding-left:5px;
-    padding-right:5px;
+    padding-left:10px;
+    padding-right:10px;
+
 }
 #window-container{
+
     display:flex;
-    height:600px;
-    background: cornsilk;
+    height:550px;
+
+    justify-content: space-between;
 }
 .left-container{
     background: yellow;
     width:30%;
+    margin-right: 20px;
 }
 .right-container{
-    background: chartreuse;
+    background: powderblue;
     width:70%;
 }
 .sub-right{
@@ -20,10 +24,15 @@ body{
     flex-direction: column;
 }
 #graphic-container{
-    background: antiquewhite;
-    height:60%;
+    justify-content: center;
 }
 #log-container{
-    background: blueviolet;
+    background: antiquewhite;
    height:30%;
+}
+#inputPanel{
+    display:flex;
+    flex-direction:row;
+    justify-content: space-between;
+    padding-left: 20%;
 }
