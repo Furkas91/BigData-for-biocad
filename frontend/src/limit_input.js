@@ -1,7 +1,6 @@
-
 import React from "react";
 
-export default class LimitInput extends  React.Component{
+class LimitInput extends  React.Component{
     constructor(props) {
         super(props);
         this.state= { info : ""};
@@ -32,12 +31,12 @@ export default class LimitInput extends  React.Component{
     );
     }
 }
-class Calculator extends React.Component {
+export default class Calculator extends React.Component {
     constructor(props) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
         this.state = {value:"" , scale: 'c'};
-        this.buttons = ["Давление", "Влажность", "Температура","Масса"];
+        this.buttons = [];
     }
 
     handleChange(event) {
@@ -46,7 +45,7 @@ class Calculator extends React.Component {
 
     render() {
         //const celsius = scale === 'f' ? tryConvert(temperature, toCelsius) : temperature;
-        const but = this.buttons.map((item) => <button className="btn btn-success">{item}</button>);
+
         const btn = <button className="btn btnDefault btnPrimary target">item</button>;
         return (
             <div>
@@ -57,4 +56,4 @@ class Calculator extends React.Component {
         );
     }
 }
-//ReactDOM.render((<Calculator/>), document.getElementById("limit-input"));
+//ReactDOM.render((<Calculator/>), document.getElementById("ro"));
