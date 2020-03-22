@@ -17,9 +17,9 @@ export default class Graphik extends React.Component{
         array = array.map((item,index)=>{ return{name:index, value: item}});
         return(
             <div>
-                <p>Hello</p>
-                <AreaChart width={730} height={250} data={array}
-                           margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
+
+                <AreaChart width={1000} height={350} data={array}
+                           margin={{ top: 10, right: 30, left: 50, bottom: 0 }}>
                     <defs>
                         <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
                             <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8}/>
