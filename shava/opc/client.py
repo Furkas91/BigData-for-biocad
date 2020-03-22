@@ -33,7 +33,7 @@ def client():
 
 
 
-    url = "opc.tcp://192.168.0.103:4840"
+    url = "opc.tcp://192.168.43.193:4840"
     client = Client(url)
 
     client.connect()

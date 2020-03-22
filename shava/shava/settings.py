@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'api',
     'opc',
+    'vkbot',
     # 'api.models.Measure',
 ]
 
