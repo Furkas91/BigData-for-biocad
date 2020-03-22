@@ -80,7 +80,7 @@ class Graphik extends React.Component{
     }
 }
 
-class BoxGraphik extends React.Component{
+export default class BoxGraphic extends React.Component{
     constructor(props) {
         super(props);
         this.state = {data:[{x:1, y:2}, {x:2, y:4},{x:3, y:4},{x:1, y:1}]}

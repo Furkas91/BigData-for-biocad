@@ -18,21 +18,11 @@ import TableSearch from "./table-search-script"
 import imgdown from "./resources/arrow-down-outline.svg"
 import imgup from "./resources/arrow-up-outline.svg"
 import BoxGraphic from "./graphic-script.js"
+import Table from "./table-script.js"
 
 
 //let url = "http://127.0.0.1:8000/api/v1/all/";
 /*
-class ClientServer extends React.Component{
-    componentDidMount() {
-        this.fetchQuotes()
-        this.timer = setInterval(() => this.fetchQuotes(), 3000);
-
-    }
-    componentWillUnmount() {
-        this.timer = null;
-    }
-
-
 let sendRequest =  (counter) => {
     let url = "http://127.0.0.1:8000/api/v1/all/";
     let response =  fetch(url);
@@ -46,49 +36,8 @@ let sendRequest =  (counter) => {
         json = "";
     }
 let timer = setInterval(sendRequest(cont), 3000)
-class MyComponent extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            posts: []
-        };
-    }
-    componentDidMount() {
-    }
-    render() {
-        return(<div>fsdf</div>)
-    }
 }*/
 //ReactDOM.render((<MyComponent/>), document.getElementById("log-container"));
-
-class Table extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        return (
-            <div >
-                <table className="table"  >
-                    <thead>
-                    <tr className="thead-dark">
-                        <th onClick={this.props.onSort.bind(null, 'id')}> # {this.props.sortField === 'id' ? <img width="20" height="20" alt="" src={this.props.imgPath}/>: null }</th>
-                        <th onClick={this.props.onSort.bind(null,'type')}>Type {this.props.sortField === 'type' ?  <img width="20" height="20" src={this.props.imgPath}/>: null}</th>
-                        <th onClick={this.props.onSort.bind(null, 'value')}>Value {this.props.sortField === 'value' ?<img width="20" height="20" src={this.props.imgPath}/>: null}</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {this.props.data.map((item) => <tr key = {""+item.id+item.type} onClick={this.props.onRowSelect.bind(null, item)}><td>{item.id}</td><td>{item.type}</td><td>{item.value}</td></tr>)}
-                    </tbody>
-                </table>
-            </div>
-        );
-    }
-}
-
-
-
 
 let json="2";
 
@@ -98,9 +47,17 @@ console.log(json);
 class Users extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { currentData:'', data: [],
-
-            //data: [{id:3,type:"Андрей", value:7},{id:2,type:"minecraft", value:3},{id:3,type:"Гусь", value:4}],
+        this.state = { currentData:'',
+            data:{
+                "Time":[],
+                "Pressure": [],
+                "Humidity": [],
+                "TempIns": [],
+                "TempWork":[],
+                "pH": [],
+                "Weight": [],
+                "FlowRate": [],
+                 "CO2": []},
             search: '',
             sort: 'asc',  // 'desc'
             sortField: 'id',
@@ -109,7 +66,6 @@ class Users extends React.Component {
             imgPath:"" ,
             isModeSelected: false,
             isLoading: false,
-            //data: [{id:3,type:"Андрей", value:7},{id:2,type:"minecraft", value:3},{id:3,type:"Гусь", value:4}],
             logger:""}
         this.onRowSelect = row => (
             this.setState({row})
@@ -117,17 +73,36 @@ class Users extends React.Component {
         this.searchHandler = search => {
             this.setState({search})
         }
-
+        this.dataOf = (data)=>{
+            let res= [];
+            let i=1;
+            for (let x in data){
+                if(x!=="Time")
+                    res.push({id:i++, type:x, value: data[x]})
+            }
+            console.log(res);
+            return res;
+        }
     }
 
 
     componentDidMount() {
-        axios.get("http://127.0.0.1:8000/api/v1/rt/")
-            .then(res => {
 
+        this.timerData = setInterval(()=>{axios.get("http://127.0.0.1:8000/api/v1/rt/")
+            .then(res => {
                 //console.log(people);
-                this.setState(state=>{ return{data: state.data.push(res.data), currentData:res.data}});
-            })
+                this.setState(state=>{
+                    let array = res.data;
+                    let massive = state.data;
+                    for(let x in array)
+                        massive[x].push(array[x]);
+                    return{data: massive, currentData:res.data}});})}, 3000)
+        this.timerLog = setInterval(()=>{axios.get("http://127.0.0.1:8000/api/v1/logs/")
+            .then(res => {
+                this.setState({logger:res.data}) })}, 1000)
+    }
+    componentWillUnmount() {
+        this.timerData = null;
     }
 
     render() {
@@ -154,7 +129,6 @@ class Users extends React.Component {
                     (""+item["id"]).toLowerCase().includes(search.toLowerCase()) ||
                     item["type"].toLowerCase().includes(search.toLowerCase())
                 );
-
             });
             if(!result.length){
                 result = currentdata;
@@ -162,20 +136,10 @@ class Users extends React.Component {
             return result;
         }
 
-        function dataOf(data){
-            let res= [];
-            let i=1;
-            for (let x in data){
-                if(x!=="Time")
-                res.push({id:i++, type:x, value: data[x]})
-            }
-            console.log(res);
-            return res;
-        }
 
-        let tableData = dataOf(this.state.currentData);
+
+        let tableData = this.dataOf(this.state.currentData);
         let filteredData = getFilteredData(tableData, this.state.search);
-        //let filteredData = tableData;
 
         return(<div>
             <div id="window-container">
@@ -195,7 +159,7 @@ class Users extends React.Component {
                 <div className="right-container">
                     <a href="../src/sub_page.html">График</a>
                     <div className="right-container sub-right">
-                        <div id="graphic-container"><BoxGraphik/></div>
+                        <div id="graphic-container"><BoxGraphic/></div>
                         <div id="log-container">
                             <Logger value = {this.state.logger}/>
                         </div>
