@@ -9,134 +9,20 @@ import YAxis from "recharts/lib/cartesian/YAxis";
 import XAxis from "recharts/lib/cartesian/XAxis";
 import Area from "recharts/lib/cartesian/Area";
 import CartesianGrid from "recharts/lib/cartesian/CartesianGrid";
-import LimitInput from "./limit_input"
-import TableApp from "./table_script"
+
 import axios from 'axios';
 
-class Graphik extends React.Component{
-    constructor(props) {
-        super(props);
-        this.state= {data:  [
-                {
-                    "name": "Page A",
-                    "uv": 4000,
-                    "pv": 2400,
-                    "amt": 2400
-                },
-                {
-                    "name": "Page B",
-                    "uv": 3000,
-                    "pv": 1398,
-                    "amt": 2210
-                },
-                {
-                    "name": "Page C",
-                    "uv": 2000,
-                    "pv": 9800,
-                    "amt": 2290
-                },
-                {
-                    "name": "Page D",
-                    "uv": 2780,
-                    "pv": 3908,
-                    "amt": 2000
-                },
-                {
-                    "name": "Page E",
-                    "uv": 1890,
-                    "pv": 4800,
-                    "amt": 2181
-                },
-                {
-                    "name": "Page F",
-                    "uv": 2390,
-                    "pv": 3800,
-                    "amt": 2500
-                },
-                {
-                    "name": "Page G",
-                    "uv": 3490,
-                    "pv": 4300,
-                    "amt": 2100
-                }
-            ]}
-    }//this.props.
-    render(){
+import _ from "lodash";
+import Calculator from "./limit_input";
+import TableSearch from "./table-search-script"
+import imgdown from "./resources/arrow-down-outline.svg"
+import imgup from "./resources/arrow-up-outline.svg"
+import BoxGraphic from "./graphic-script.js"
 
-        return(
-            <div>
-                <p>Hello</p>
-                <AreaChart width={730} height={250} data={this.state.data}
-                           margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
-                    <defs>
-                        <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8}/>
-                            <stop offset="95%" stopColor="#8884d8" stopOpacity={0}/>
-                        </linearGradient>
-
-                    </defs>
-                    <XAxis dataKey="name" />
-                    <YAxis />
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <Tooltip />
-                    <Area type="monotone" dataKey="uv" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
-
-                </AreaChart>
-            </div>
-        )
-    }
-}
-
-class BoxGraphik extends React.Component{
-    constructor(props) {
-        super(props);
-        this.state = {data:[{x:1, y:2}, {x:2, y:4},{x:3, y:4},{x:1, y:1}]}
-    }
-    render(){
-        return <Graphik
-            data={this.state.data}
-        />
-    }
-}
 
 //let url = "http://127.0.0.1:8000/api/v1/all/";
-
-
 /*
 class ClientServer extends React.Component{
-    /*
-    constructor(props) {
-        super(props);
-        this.state= {
-            data: [],
-            counter: 0,
-            isFetching: false
-        };
-        this.handleChange = this.handleChange();
-        this.sendRequest = async (url) => {
-            let response = await fetch(url);
-            let json;
-            if (response.ok) { // если HTTP-статус в диапазоне 200-299
-                // получаем тело ответа (см. про этот метод ниже)
-                json = await response.json();
-                alert("Success");
-            } else {
-                alert("Ошибка HTTP: " + response.status);
-                json = "";
-            }
-            this.setState((state)=> {counter: state.counter + 1});
-            return json;
-        }
-        this.fetchQuotes = () => {
-            this.setState(state=>{counter: state.counter+1; isFetching: true});
-            fetch(QUOTE_SERVICE_URL)
-                .then(response => response.json())
-                .then(result => this.setState({quotes: result,
-                    isFetching: false}))
-                .catch(e => console.log(e));
-        }
-    }
-
     componentDidMount() {
         this.fetchQuotes()
         this.timer = setInterval(() => this.fetchQuotes(), 3000);
@@ -145,28 +31,8 @@ class ClientServer extends React.Component{
     componentWillUnmount() {
         this.timer = null;
     }
-    render(){
 
-        return
-    }
-    constructor(props) {
-        super(props);
 
-        this.state = {
-            todos: []
-        };
-    }
-
-    componentDidMount() {
-        fetch(`some api url`).then(res => {
-            this.setState({ todos: res.todos });
-        });
-    }
-
-    return() {
-        return (<div value ={this.state.todos}></div>)
-    }
-}
 let sendRequest =  (counter) => {
     let url = "http://127.0.0.1:8000/api/v1/all/";
     let response =  fetch(url);
@@ -179,23 +45,7 @@ let sendRequest =  (counter) => {
         alert("Ошибка HTTP: " + response.status);
         json = "";
     }
-    counter++;
-    console.log(counter);
-    return json;
-}
-let cont
 let timer = setInterval(sendRequest(cont), 3000)
-class SimpleField extends React.Component{
-    constructor(props) {
-        super(props);
-    }
-    return() {
-        return (<div>{this.props.value} </div>)
-    }
-}*/
-//ReactDOM.render((<SimpleField value={cont}/>), document.getElementById("log-container"));
-
-
 class MyComponent extends React.Component {
     constructor(props) {
         super(props);
@@ -205,13 +55,38 @@ class MyComponent extends React.Component {
         };
     }
     componentDidMount() {
-
     }
     render() {
         return(<div>fsdf</div>)
     }
-}
+}*/
 //ReactDOM.render((<MyComponent/>), document.getElementById("log-container"));
+
+class Table extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <div >
+                <table className="table"  >
+                    <thead>
+                    <tr className="thead-dark">
+                        <th onClick={this.props.onSort.bind(null, 'id')}> # {this.props.sortField === 'id' ? <img width="20" height="20" alt="" src={this.props.imgPath}/>: null }</th>
+                        <th onClick={this.props.onSort.bind(null,'type')}>Type {this.props.sortField === 'type' ?  <img width="20" height="20" src={this.props.imgPath}/>: null}</th>
+                        <th onClick={this.props.onSort.bind(null, 'value')}>Value {this.props.sortField === 'value' ?<img width="20" height="20" src={this.props.imgPath}/>: null}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {this.props.data.map((item) => <tr key = {""+item.id+item.type} onClick={this.props.onRowSelect.bind(null, item)}><td>{item.id}</td><td>{item.type}</td><td>{item.value}</td></tr>)}
+                    </tbody>
+                </table>
+            </div>
+        );
+    }
+}
+
 
 
 
@@ -223,40 +98,108 @@ console.log(json);
 class Users extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { users: [] };
+        this.state = { currentData:'', data: [],
+
+            //data: [{id:3,type:"Андрей", value:7},{id:2,type:"minecraft", value:3},{id:3,type:"Гусь", value:4}],
+            search: '',
+            sort: 'asc',  // 'desc'
+            sortField: 'id',
+            row: null,
+            currentPage: 0,
+            imgPath:"" ,
+            isModeSelected: false,
+            isLoading: false,
+            //data: [{id:3,type:"Андрей", value:7},{id:2,type:"minecraft", value:3},{id:3,type:"Гусь", value:4}],
+            logger:""}
+        this.onRowSelect = row => (
+            this.setState({row})
+        )
+        this.searchHandler = search => {
+            this.setState({search})
+        }
+
     }
 
-    componentDidMount() {
 
+    componentDidMount() {
+        axios.get("http://127.0.0.1:8000/api/v1/rt/")
+            .then(res => {
+
+                //console.log(people);
+                this.setState(state=>{ return{data: state.data.push(res.data), currentData:res.data}});
+            })
     }
 
     render() {
-        /*return (
-            <div>
-                <h1>Users</h1>
-                {
-                    this.state.users.length == 0
-                        ? 'Loading users...'
-                        : this.state.users.map(user => (
-                            <figure key={user.type+user.value}>
-                                <p>{user.type} </p>
-                                <p>{user.value}</p>
-                            </figure>
-                        ))
-                }
-            </div>
-        );*/
+        let onSort = sortField => {
+
+            const cloneData = this.state.currentData;
+            const sortType = this.state.sort === 'asc' ? 'desc' : 'asc';
+            const imgP = sortType=== 'asc'? imgdown:imgup;
+            const orderedData = _.orderBy(cloneData, sortField, sortType);
+
+            this.setState({
+                currentData: orderedData,
+                sort: sortType,
+                imgPath:imgP,
+                sortField
+            })
+        }
+        function getFilteredData(currentdata, search){
+            if (!search) {
+                return currentdata;
+            }
+            var result = currentdata.filter(item => {
+                return (
+                    (""+item["id"]).toLowerCase().includes(search.toLowerCase()) ||
+                    item["type"].toLowerCase().includes(search.toLowerCase())
+                );
+
+            });
+            if(!result.length){
+                result = currentdata;
+            }
+            return result;
+        }
+
+        function dataOf(data){
+            let res= [];
+            let i=1;
+            for (let x in data){
+                if(x!=="Time")
+                res.push({id:i++, type:x, value: data[x]})
+            }
+            console.log(res);
+            return res;
+        }
+
+        let tableData = dataOf(this.state.currentData);
+        let filteredData = getFilteredData(tableData, this.state.search);
+        //let filteredData = tableData;
+
         return(<div>
             <div id="window-container">
                 <div className="left-container" id="table-container">
-                    <TableApp/>
+                    <div className="container">
+                        <TableSearch onSearch={this.searchHandler} />
+                        <Table
+                            sort={this.state.sort}
+                            data={filteredData}
+                            onSort={onSort}
+                            sortField={this.state.sortField}
+                            onRowSelect={this.onRowSelect}
+                            imgPath={this.state.imgPath}
+                        />
+                    </div>
                 </div>
                 <div className="right-container">
                     <a href="../src/sub_page.html">График</a>
                     <div className="right-container sub-right">
                         <div id="graphic-container"><BoxGraphik/></div>
-                        <div id="log-container"></div>
-                        <PersonList/>
+                        <div id="log-container">
+                            <Logger value = {this.state.logger}/>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -266,29 +209,14 @@ class Users extends React.Component {
 }
 
 
- class PersonList extends React.Component {
+class Logger extends React.Component{
     constructor(props) {
         super(props);
-        this.state = {
-            people: []
-        }
     }
 
-    componentDidMount() {
-        /*axios.get("http://127.0.0.1:8000/api/v1/all/")
-            .then(res => {
-                const people= res.data;
-                this.setState({ people});
-            })*/
-    }
-
-    render() {
-        return (
-            <ol>
-                { this.state.people.map(person => <li>{person.name}</li>)}
-            </ol>
-        )
+    render(){
+        return(<div><p>{this.props.value}</p></div>);
     }
 }
 ReactDOM.render(<Users/>, document.getElementById("root"));
-//ReactDOM.render(<PersonList/>, document.getElementById("ro"));
+
