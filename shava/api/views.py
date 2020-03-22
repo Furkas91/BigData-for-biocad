@@ -2,8 +2,8 @@
 from rest_framework import generics
 from rest_framework.response import Response
 
-from api.models import Measure
-from api.serializers import MeasureListSerializer
+from api.models import Measure, Ustavki, Log
+from api.serializers import MeasureListSerializer, UstavkaDefaultSerializer, LoggerSerializer
 
 
 class ListMeasureView(generics.ListAPIView):
@@ -19,5 +19,23 @@ class RealTimeMeasureView(generics.RetrieveUpdateDestroyAPIView):
         object = Measure.objects.latest('Time')
         serializer = MeasureListSerializer(object)
         return Response(serializer.data)
+
+
+class CreateUstavkaView(generics.CreateAPIView):
+    serializer_class = UstavkaDefaultSerializer
+
+
+class RetrieveUstavkaView(generics.RetrieveAPIView):
+    serializer_class = UstavkaDefaultSerializer
+
+    def retrieve(self, request, *args, **kwargs):
+        object = Ustavki.objects.latest('Time')
+        serializer = UstavkaDefaultSerializer(object)
+        return Response(serializer.data)
+
+
+class ListLogsView(generics.ListAPIView):
+    serializer_class = LoggerSerializer
+    queryset = Log.objects.all()
 
 #class CreateMeasureView()
