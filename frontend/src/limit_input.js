@@ -1,6 +1,6 @@
 import React from "react";
 
-class LimitInput extends  React.Component{
+export default class LimitInput extends  React.Component{
     constructor(props) {
         super(props);
         this.state= { info : ""};
@@ -9,51 +9,26 @@ class LimitInput extends  React.Component{
     }
 
     handleChange(e) {
-        this.props.onTemperatureChange(e.target.value);
+        this.props.onLimitChange(e);
     }
     handleClick(){
-        if(this.props.limitvalue!=="")
-            this.setState({info: "Применено"});
-        else
-            this.setState({info: ""});
+        this.props.onLimitClick();
     }
 
     render(){
         const value = this.props.limitvalue;
         //const scale = this.props.scale;
         return (
-            <fieldset>
-                <legend>Введите предел</legend>
-                <input value={value} onChange={this.handleChange} />
-                <button className="" onClick={this.handleClick}>Применить</button>
-                <p>{this.state.info}</p>
-            </fieldset>
+            <div className="input-group mb-3">
+                <input type="text" className="form-control" placeholder="Recipient's username"
+                       aria-label="Recipient's username" aria-describedby="button-addon2" value={value} onChange={this.handleChange}/>
+                    <div className="input-group-append">
+                        <button className="btn btn-outline-secondary" type="button" id="button-addon2" onClick={this.handleClick}>Button</button>
+                    </div>
+            </div>
+
     );
     }
 }
-export default class Calculator extends React.Component {
-    constructor(props) {
-        super(props);
-        this.handleChange = this.handleChange.bind(this);
-        this.state = {value:"" , scale: 'c'};
-        this.buttons = [];
-    }
 
-    handleChange(event) {
-        this.setState({ value: event});
-    }
-
-    render() {
-        //const celsius = scale === 'f' ? tryConvert(temperature, toCelsius) : temperature;
-
-        const btn = <button className="btn btnDefault btnPrimary target">item</button>;
-        return (
-            <div>
-                <LimitInput
-                    limitvalue={this.state.value}
-                    onTemperatureChange={this.handleChange} />
-            </div>
-        );
-    }
-}
 //ReactDOM.render((<Calculator/>), document.getElementById("ro"));

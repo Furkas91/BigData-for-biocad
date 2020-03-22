@@ -3,24 +3,17 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import {AreaChart} from "recharts";
-import Tooltip from "recharts/lib/component/Tooltip";
-import YAxis from "recharts/lib/cartesian/YAxis";
-import XAxis from "recharts/lib/cartesian/XAxis";
-import Area from "recharts/lib/cartesian/Area";
-import CartesianGrid from "recharts/lib/cartesian/CartesianGrid";
+
 
 import axios from 'axios';
-
 import _ from "lodash";
-import Calculator from "./limit_input";
+import LimitInput from "./limit_input";
 import TableSearch from "./table-search-script"
 import imgdown from "./resources/arrow-down-outline.svg"
 import imgup from "./resources/arrow-up-outline.svg"
-import BoxGraphic from "./graphic-script.js"
+import Graphic from "./graphic-script.js"
 import Table from "./table-script.js"
-
-
+import SwitchButton from "./switch-button-script";
 //let url = "http://127.0.0.1:8000/api/v1/all/";
 /*
 let sendRequest =  (counter) => {
@@ -39,15 +32,11 @@ let timer = setInterval(sendRequest(cont), 3000)
 }*/
 //ReactDOM.render((<MyComponent/>), document.getElementById("log-container"));
 
-let json="2";
-
-console.log(json);
-
-
 class Users extends React.Component {
     constructor(props) {
         super(props);
         this.state = { currentData:'',
+            type: "Pressure",
             data:{
                 "Time":[],
                 "Pressure": [],
@@ -66,7 +55,10 @@ class Users extends React.Component {
             imgPath:"" ,
             isModeSelected: false,
             isLoading: false,
-            logger:""}
+            limitValue:'',
+            logger:"",
+            limstate:{}
+        }
         this.onRowSelect = row => (
             this.setState({row})
         )
@@ -80,11 +72,36 @@ class Users extends React.Component {
                 if(x!=="Time")
                     res.push({id:i++, type:x, value: data[x]})
             }
-            console.log(res);
+
             return res;
         }
-    }
+        this.handleChangeType=(e)=>{
+            this.setState({type:e.target.value});
+        }
+        this.handleLimitChange = (event)=> {
+            this.setState({ limitValue: event.target.value});
+        }
 
+        this.handleLimitClick = ()=>{
+
+
+            axios.get("http://127.0.0.1:8000/api/v1/lastust/")
+                .then(res => { let k = res.data;
+
+                delete k["Time"];
+                k[this.state.type] = this.state.limitValue.toString();
+                    console.log(k);
+                axios.post("http://127.0.0.1:8000/api/v1/updateust/", k).then(res=>{alert("Success")});
+                });
+
+
+
+
+
+            //console.log(k);
+
+        }
+    }
 
     componentDidMount() {
 
@@ -159,7 +176,17 @@ class Users extends React.Component {
                 <div className="right-container">
                     <a href="../src/sub_page.html">График</a>
                     <div className="right-container sub-right">
-                        <div id="graphic-container"><BoxGraphic/></div>
+                        <div id="graphic-container">
+                            <Graphic data ={this.state.data[this.state.type]}/>
+                            <div className="form-row" >
+
+                                    <SwitchButton handleChangeType={this.handleChangeType} type={this.state.type}/>
+
+                                    <LimitInput value={this.state.limitValue} onLimitChange={this.handleLimitChange} onLimitClick ={this.handleLimitClick}/>
+
+                            </div>
+
+                        </div>
                         <div id="log-container">
                             <Logger value = {this.state.logger}/>
                         </div>
