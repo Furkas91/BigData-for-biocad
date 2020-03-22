@@ -9,6 +9,9 @@ import YAxis from "recharts/lib/cartesian/YAxis";
 import XAxis from "recharts/lib/cartesian/XAxis";
 import Area from "recharts/lib/cartesian/Area";
 import CartesianGrid from "recharts/lib/cartesian/CartesianGrid";
+import LimitInput from "./limit_input"
+import TableApp from "./table_script"
+import axios from 'axios';
 
 class Graphik extends React.Component{
     constructor(props) {
@@ -96,9 +99,7 @@ class BoxGraphik extends React.Component{
     }
 }
 
-ReactDOM.render((<BoxGraphik/>), document.getElementById("graphic-container"));
-
-let url = "http://127.0.0.1:8000/api/v1/all/";
+//let url = "http://127.0.0.1:8000/api/v1/all/";
 
 
 /*
@@ -203,26 +204,91 @@ class MyComponent extends React.Component {
             posts: []
         };
     }
+    componentDidMount() {
+
+    }
+    render() {
+        return(<div>fsdf</div>)
+    }
+}
+//ReactDOM.render((<MyComponent/>), document.getElementById("log-container"));
+
+
+
+let json="2";
+
+console.log(json);
+
+
+class Users extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { users: [] };
+    }
 
     componentDidMount() {
 
     }
 
     render() {
-        return(<div>fsdf</div>)
+        /*return (
+            <div>
+                <h1>Users</h1>
+                {
+                    this.state.users.length == 0
+                        ? 'Loading users...'
+                        : this.state.users.map(user => (
+                            <figure key={user.type+user.value}>
+                                <p>{user.type} </p>
+                                <p>{user.value}</p>
+                            </figure>
+                        ))
+                }
+            </div>
+        );*/
+        return(<div>
+            <div id="window-container">
+                <div className="left-container" id="table-container">
+                    <TableApp/>
+                </div>
+                <div className="right-container">
+                    <a href="../src/sub_page.html">График</a>
+                    <div className="right-container sub-right">
+                        <div id="graphic-container"><BoxGraphik/></div>
+                        <div id="log-container"></div>
+                        <PersonList/>
+                    </div>
+                </div>
+            </div>
+            <img src={"/resources/arrow-down-outline.svg"}/>
+        </div>)
+    }
+}
+
+
+ class PersonList extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            people: []
+        }
     }
 
-}
-ReactDOM.render((<MyComponent/>), document.getElementById("log-container"));
+    componentDidMount() {
+        /*axios.get("http://127.0.0.1:8000/api/v1/all/")
+            .then(res => {
+                const people= res.data;
+                this.setState({ people});
+            })*/
+    }
 
-
-let response =  fetch("http://127.0.0.1:8000/api/v1/all/");
-let json="2";
-if (response.ok) { // если HTTP-статус в диапазоне 200-299
-    // получаем тело ответа (см. про этот метод ниже)
-    json = response.json();
-    alert("Success");
-} else {
-    alert("Ошибка HTTP: " + response.status);
+    render() {
+        return (
+            <ol>
+                { this.state.people.map(person => <li>{person.name}</li>)}
+            </ol>
+        )
+    }
 }
-console.log(json);
+ReactDOM.render(<Users/>, document.getElementById("root"));
+//ReactDOM.render(<PersonList/>, document.getElementById("ro"));

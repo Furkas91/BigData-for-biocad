@@ -26,7 +26,7 @@ def client():
     from api.models import Measure
 
 
-    url = "opc.tcp://192.168.0.103:4840"
+    url = "opc.tcp://172.18.8.26:4840"
     client = Client(url)
 
     client.connect()
