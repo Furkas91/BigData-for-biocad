@@ -1,7 +1,7 @@
 amqp==2.5.2
 billiard==3.6.3.0
 celery==4.4.2
-certifi==2019.11.28
+certifi==2022.12.7
 cffi==1.14.0
 chardet==3.0.4
 clickhouse-cityhash==1.0.2.3
